@@ -1,21 +1,15 @@
-const post = () => {
+import fetch from 'node-fetch';
+
+const post = async () => {
   return {
     id: '1',
     title: 'Post 1',
   };
 };
 
-const posts = () => {
-  return [
-    {
-      id: '1',
-      title: 'Post 2',
-    },
-    {
-      id: '2',
-      title: 'Post 2',
-    },
-  ];
+const posts = async () => {
+  const users = await fetch('http://localhost:3000/users');
+  return users.json();
 };
 
 export const postResolvers = {

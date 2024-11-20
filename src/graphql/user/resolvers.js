@@ -1,25 +1,13 @@
-const user = () => {
-  return {
-    id: '387483-34983984',
-    userName: 'Cesar Dev',
-  };
+const user = async (_, { id }, { fecth }) => {
+  const user = await fetch('http://localhost:3000/users/' + id);
+
+  return user.json();
 };
 
-const users = () => {
-  return [
-    {
-      id: '387483-63546354',
-      userName: 'Cesar Dev',
-    },
-    {
-      id: '387483-5647556',
-      userName: 'Cesar Dev',
-    },
-    {
-      id: '387483-34983984',
-      userName: 'Cesar Dev',
-    },
-  ];
+// obj, arg, context, info
+const users = async (_, __, { fecth }) => {
+  const users = await fetch('http://localhost:3000/users');
+  return users.json();
 };
 
 export const userResolvers = {
