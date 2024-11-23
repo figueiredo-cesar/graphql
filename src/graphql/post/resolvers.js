@@ -1,20 +1,24 @@
-import fetch from 'node-fetch';
+const post = async (_, { id }, { getPosts }) => {
+  const post = await getPosts('/' + id);
 
-const post = async () => {
-  return {
-    id: '1',
-    title: 'Post 1',
-  };
+  return post.json();
 };
 
-const posts = async () => {
-  const users = await fetch('http://localhost:3000/users');
-  return users.json();
+const posts = async (_, __, { getPosts }) => {
+  const posts = await getPosts();
+  return posts.json();
 };
 
 export const postResolvers = {
   Query: {
     post,
     posts,
+  },
+  Post: {
+    unixTimestamp: ({ createdAt }) => {
+      const timestamp = new Date(createdAt).getTime() / 1000;
+
+      return Maath.floor(timestamp);
+    },
   },
 };
