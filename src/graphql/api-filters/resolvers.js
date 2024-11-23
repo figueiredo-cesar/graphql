@@ -1,5 +1,5 @@
 export const apiFiltersResolvers = {
-  ApiFilterOrder: {
+  ApiFilterOrderEnum: {
     ASC: 'asc',
     DESC: 'desc',
   },
