@@ -10,4 +10,8 @@ npm install sucrase
 npm install json-server
 
 npm install node-fetch
+
+npm install --save dataloader
+
+npm install dotenv
 ```

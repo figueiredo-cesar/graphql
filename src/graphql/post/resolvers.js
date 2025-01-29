@@ -27,17 +27,18 @@ const posts = async (_, { input }, { getPosts }) => {
   return posts.json();
 };
 
+const user = async ({ userId }, _, { userDataLoader }) => {
+  console.log('oi', userId);
+  return userDataLoader.load(userId);
+};
+
 export const postResolvers = {
   Query: {
     post,
     posts,
   },
   Post: {
-    unixTimestamp: ({ createdAt }) => {
-      const timestamp = new Date(createdAt).getTime() / 1000;
-
-      return Maath.floor(timestamp);
-    },
+    user,
   },
   PostResult: {
     __resolveType: (obj) => {
