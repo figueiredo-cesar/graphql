@@ -14,4 +14,7 @@ npm install node-fetch
 npm install --save dataloader
 
 npm install dotenv
+
+npm install apollo-datasource-rest
+
 ```

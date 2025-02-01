@@ -12,7 +12,6 @@ const users = async (_, { input }, { getUsers }) => {
 };
 
 const posts = ({ id }, _, { postDataLoader }) => {
-  console.log('ou', id);
   return postDataLoader.load(id);
 };
 

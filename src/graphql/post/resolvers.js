@@ -1,34 +1,14 @@
-const post = async (_, { id }, { getPosts }) => {
-  const response = await getPosts('/' + id);
-
-  // fins didaticos
-  if (Math.random() > 0.5) {
-    return {
-      statusCode: '500',
-      message: 'Post timeout',
-      timeout: 123,
-    };
-  }
-
-  if (response.status === 404) {
-    return {
-      statusCode: '404',
-      message: 'Post not found',
-      postId: id,
-    };
-  }
-  const post = await response.json();
+const post = async (_, { id }, { dataSources }) => {
+  const post = await dataSources.postApi.getPost(id);
   return post;
 };
 
-const posts = async (_, { input }, { getPosts }) => {
-  const apiFiltersInput = new URLSearchParams(input);
-  const posts = await getPosts('/?' + apiFiltersInput);
-  return posts.json();
+const posts = async (_, { input }, { dataSources }) => {
+  const posts = await dataSources.postApi.getPosts(input);
+  return posts;
 };
 
 const user = async ({ userId }, _, { userDataLoader }) => {
-  console.log('oi', userId);
   return userDataLoader.load(userId);
 };
 
